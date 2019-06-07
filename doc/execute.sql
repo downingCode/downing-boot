@@ -1,0 +1,1 @@
+CREATE DATABASE `downing_boot` CHARACTER SET 'utf8mb4';

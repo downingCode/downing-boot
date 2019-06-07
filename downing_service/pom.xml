@@ -8,14 +8,18 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <packaging>war</packaging>
 
-    <artifactId>downing_web</artifactId>
+    <artifactId>downing_service</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>com.downing</groupId>
-            <artifactId>downing_service</artifactId>
+            <artifactId>downing_dao</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.downing</groupId>
+            <artifactId>downing_common</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>

@@ -10,6 +10,10 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>downing_web</module>
+        <module>downing_service</module>
+        <module>downing_entity</module>
+        <module>downing_dao</module>
+        <module>downing_common</module>
     </modules>
 
     <parent>
