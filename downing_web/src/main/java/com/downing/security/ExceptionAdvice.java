@@ -2,8 +2,7 @@ package com.downing.security;
 
 import com.downing.common.DowningResult;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -12,15 +11,23 @@ import java.io.StringWriter;
  * @author downing
  * @descript 统一异常处理，所有抛出的运行时异常都会被拦截到这里
  */
-@ControllerAdvice
+@RestControllerAdvice
 public class ExceptionAdvice {
 
     /**
      * 逻辑业务异常
      */
-    @ExceptionHandler(LogicException.class)
-    public ResponseEntity<DowningResult> handleException(LogicException exception) {
+    @ExceptionHandler(value = LogicException.class)
+    public DowningResult handleException(LogicException exception) {
         //TODO 日志记录
+        return new DowningResult(exception.getCode(), exception.getMessage());
+    }
+
+    /**
+     * 逻辑安全异常
+     */
+    @ExceptionHandler(AuthorizedException.class)
+    public ResponseEntity<DowningResult> handleException(AuthorizedException exception) {
         return ResponseEntity.ok(new DowningResult(exception.getCode(), exception.getMessage()));
     }
 
@@ -29,6 +36,7 @@ public class ExceptionAdvice {
      */
     @ExceptionHandler(Exception.class)
     public ResponseEntity<DowningResult> handleException(Exception exception) {
+        System.out.println("111111111111");
         return ResponseEntity.ok(new DowningResult(-500, exception.getMessage()));
     }
 
