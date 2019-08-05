@@ -1,6 +1,8 @@
 package com.downing.security;
 
+import com.downing.common.AuthorizedException;
 import com.downing.common.DowningResult;
+import com.downing.common.LogicException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

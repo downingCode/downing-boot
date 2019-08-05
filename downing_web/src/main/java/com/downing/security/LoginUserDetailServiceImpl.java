@@ -1,5 +1,7 @@
 package com.downing.security;
 
+import com.downing.entity.Users;
+import com.downing.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.User;
@@ -20,13 +22,13 @@ public class LoginUserDetailServiceImpl implements UserDetailsService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private UsersService usersService;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        //todo 查询数据库
-        if (username.equals("jack")) {
-            return User.builder().username("jack").password(passwordEncoder.encode("jack")).roles("ADMIN").build();
-        }
-        return null;
+        Users dataUser = usersService.findUserByUsername(username);
+        return User.builder().username(dataUser.getUsername()).password(passwordEncoder.encode(dataUser.getPassword())).roles("ADMIN").build();
     }
 
     @Bean

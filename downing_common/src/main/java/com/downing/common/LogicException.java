@@ -1,4 +1,4 @@
-package com.downing.security;
+package com.downing.common;
 
 /**
  * @author downing
