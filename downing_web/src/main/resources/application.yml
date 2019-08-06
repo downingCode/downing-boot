@@ -11,6 +11,3 @@ spring:
     password:
     hikari:
       auto-commit: false
-  security:
-    basic:
-      enabled: false

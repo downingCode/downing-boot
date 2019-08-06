@@ -19,9 +19,7 @@ import java.io.IOException;
 public class LoginSuccessHandler implements AuthenticationSuccessHandler {
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-        response.setContentType("application/json;charset=UTF-8");
-        DowningResult result = new DowningResult(200, "登录成功", null);
-        response.getWriter().write(JSONObject.toJSONString(result));
-        //todo 整合JWT
+        //jwt
+        JwtUtils.addAuthentication(response, authentication.getName());
     }
 }

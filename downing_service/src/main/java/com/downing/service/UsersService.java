@@ -4,7 +4,6 @@ import com.downing.common.AuthorizedException;
 import com.downing.dao.UsersMapper;
 import com.downing.entity.Users;
 import org.springframework.stereotype.Service;
-
 import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;

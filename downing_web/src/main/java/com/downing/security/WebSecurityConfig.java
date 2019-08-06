@@ -1,8 +1,5 @@
 package com.downing.security;
 
-import org.apache.catalina.filters.CorsFilter;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -33,9 +30,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 new Header("Access-Control-Expose-Headers", "Authorization"))))
                 .and() //拦截OPTIONS请求，直接返回header
                 //添加登录filter
-                .apply(new LoginConfigure<>()).loginSuccessHandler(new LoginSuccessHandler())
+                .apply(new LoginConfigurer<>()).loginSuccessHandler(new LoginSuccessHandler())
                 .and()
                 //添加token的filter
+                .apply(new JwtCheckConfigurer<>())
+                .and()
                 //使用默认的logoutFilter
                 .logout()
                 .disable();

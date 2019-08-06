@@ -1,6 +1,5 @@
 package com.downing.security;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.HttpSecurityBuilder;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -11,11 +10,11 @@ import org.springframework.security.web.authentication.session.NullAuthenticated
  * @author downing
  * @descript 整合登录组件 配置filter
  */
-public class LoginConfigure<T extends LoginConfigure<T, B>, B extends HttpSecurityBuilder<B>> extends AbstractHttpConfigurer<T, B> {
+public class LoginConfigurer<T extends LoginConfigurer<T, B>, B extends HttpSecurityBuilder<B>> extends AbstractHttpConfigurer<T, B> {
 
     private LoginSecurityFilter authFilter;
 
-    public LoginConfigure() {
+    public LoginConfigurer() {
         this.authFilter = new LoginSecurityFilter();
     }
 
@@ -34,7 +33,7 @@ public class LoginConfigure<T extends LoginConfigure<T, B>, B extends HttpSecuri
     }
 
     //设置成功的Handler，这个handler定义成Bean，所以从外面set进来
-    public LoginConfigure<T, B> loginSuccessHandler(LoginSuccessHandler authSuccessHandler) {
+    public LoginConfigurer<T, B> loginSuccessHandler(LoginSuccessHandler authSuccessHandler) {
         authFilter.setAuthenticationSuccessHandler(authSuccessHandler);
         return this;
     }
