@@ -1,0 +1,47 @@
+server:
+  port: 8888
+
+spring:
+  # 配置数据库信息
+  datasource:
+    # 指定数据源为druid
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      # 数据源配置
+      username: downing
+      password: Downing1005!
+      url: jdbc:mysql://106.14.149.253:3306/downing_mall?useUnicode=true&characterEncoding=utf-8&useSSL=false
+      driver-class-name: com.mysql.jdbc.Driver
+      # 初始化 最小 最大
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      # 配置获取连接等待超时的时间
+      max-wait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 'x'
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      # 打开PSCache，并且指定每个连接上PSCache的大小
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 20
+      # 配置多个英文逗号分隔
+      filters: stat,wall
+
+#mybatis
+mybatis-plus:
+  mapper-locations:
+    classpath: resources/mapper/*.xml
+  typeAliasesPackage: com.downing.boot.mapper
+  global-config:
+    id-type: 0
+    field-strategy: 0
+    db-column-underline: true
+    refresh-mapper: true
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false

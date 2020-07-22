@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: downing-boot
+  profiles:
+    active: dev
+
