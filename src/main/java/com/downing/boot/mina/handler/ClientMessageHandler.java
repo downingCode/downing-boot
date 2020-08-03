@@ -9,15 +9,17 @@ import org.apache.mina.core.session.IoSession;
  * @desc
  * @date 2020/8/3 15:02
  */
-public class MessageSessionHandler extends IoHandlerAdapter {
+public class ClientMessageHandler extends IoHandlerAdapter {
 
     @Override
     public void exceptionCaught(IoSession session, Throwable cause) throws Exception {
+        cause.printStackTrace();
         super.exceptionCaught(session, cause);
     }
 
     @Override
     public void messageReceived(IoSession session, Object message) throws Exception {
+        System.out.printf("服务端返回的消息："+message.toString());
         super.messageReceived(session, message);
     }
 
