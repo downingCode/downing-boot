@@ -1,7 +1,6 @@
 package com.downing.boot.exception;
 
-import com.downing.boot.entity.DowningResult;
-import com.downing.boot.exception.LogicException;
+import com.downing.boot.common.DowningResult;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;

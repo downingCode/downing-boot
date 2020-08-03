@@ -1,4 +1,4 @@
-package com.downing.boot.entity;
+package com.downing.boot.common;
 
 /**
  * @author downing

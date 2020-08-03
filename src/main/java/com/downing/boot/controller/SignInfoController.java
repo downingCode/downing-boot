@@ -1,6 +1,6 @@
 package com.downing.boot.controller;
 
-import com.downing.boot.entity.DowningResult;
+import com.downing.boot.common.DowningResult;
 import com.downing.boot.service.activity.SignInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
