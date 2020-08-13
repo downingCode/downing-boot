@@ -1,5 +1,6 @@
 package com.downing.boot.mina.handler;
 
+import com.downing.boot.mina.pojo.AbstractData;
 import org.apache.mina.core.service.IoHandlerAdapter;
 import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.core.session.IoSession;
@@ -19,7 +20,9 @@ public class ServerMessageHandler extends IoHandlerAdapter {
 
     @Override
     public void messageReceived(IoSession session, Object message) throws Exception {
-        System.out.printf("客户端发送的消息："+message.toString());
+        AbstractData abstractData = (AbstractData) message;
+        System.out.printf("主协议："+abstractData.getMainType());
+        System.out.printf("子协议："+abstractData.getSubType());
         session.write("pong");
         super.messageReceived(session, message);
     }

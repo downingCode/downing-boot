@@ -1,5 +1,6 @@
 package com.downing.boot.mina.handler;
 
+import com.downing.boot.mina.pojo.ResultData;
 import org.apache.mina.core.service.IoHandlerAdapter;
 import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.core.session.IoSession;
@@ -19,6 +20,8 @@ public class ClientMessageHandler extends IoHandlerAdapter {
 
     @Override
     public void messageReceived(IoSession session, Object message) throws Exception {
+        ResultData resultData = (ResultData) message;
+        //存储resultData
         System.out.printf("服务端返回的消息："+message.toString());
         super.messageReceived(session, message);
     }

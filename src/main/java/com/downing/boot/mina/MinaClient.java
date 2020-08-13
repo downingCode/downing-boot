@@ -1,6 +1,8 @@
 package com.downing.boot.mina;
 
-import org.apache.mina.transport.socket.nio.NioSocketConnector;
+import com.downing.boot.mina.pojo.StringData;
+
+import java.net.InetSocketAddress;
 
 /**
  * @author downing
@@ -10,8 +12,15 @@ import org.apache.mina.transport.socket.nio.NioSocketConnector;
 public class MinaClient {
 
     public static void main(String[] args) {
-        MinaConnector connector = new MinaConnector();
-        connector.connector();
-        connector.send("ping");
+        MinaConnector connector = new MinaConnector(new InetSocketAddress("127.0.0.1", 9999));
+        connector.connect();
+        if (connector.isValid()) {
+            StringData stringData = new StringData();
+            stringData.setMessage("ping");
+            connector.send(stringData);
+            //获取存储的返回消息
+        } else {
+            System.out.printf("连接失败");
+        }
     }
 }
