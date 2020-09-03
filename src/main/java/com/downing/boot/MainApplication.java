@@ -5,6 +5,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 /**
  * @author downing
@@ -12,7 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2020/7/21 10:09
  */
 @SpringBootApplication
-@MapperScan("com.downing.boot.mapper")
+@MapperScan("com.downing.boot.mapper,com.downing.boot.admin.mapper")
 public class MainApplication implements ApplicationRunner {
 
     public static void main(String[] args) {

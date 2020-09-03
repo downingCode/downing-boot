@@ -9,7 +9,7 @@ import lombok.Data;
  * @date 2020/8/3 16:52
  */
 @Data
-public class StringData extends AbstractData{
+public class StringData extends ResultData{
 
     private String message;
 
