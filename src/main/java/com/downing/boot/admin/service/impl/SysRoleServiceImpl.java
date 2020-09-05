@@ -1,10 +1,13 @@
 package com.downing.boot.admin.service.impl;
 
 import com.downing.boot.admin.mapper.SysRoleMapper;
+import com.downing.boot.entity.SysResource;
 import com.downing.boot.entity.SysRole;
 import com.downing.boot.admin.service.ISysRoleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p>

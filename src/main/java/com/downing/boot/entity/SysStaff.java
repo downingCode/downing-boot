@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.time.LocalDateTime;
 import java.io.Serializable;
+import java.util.Date;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -38,11 +40,11 @@ public class SysStaff implements Serializable {
 
     private Integer createUser;
 
-    private LocalDateTime createTime;
+    private Date createTime;
 
     private Integer updateUser;
 
-    private LocalDateTime updateTime;
+    private Date updateTime;
 
 
 }

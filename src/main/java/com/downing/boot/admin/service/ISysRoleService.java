@@ -1,7 +1,10 @@
 package com.downing.boot.admin.service;
 
+import com.downing.boot.entity.SysResource;
 import com.downing.boot.entity.SysRole;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
  * <p>

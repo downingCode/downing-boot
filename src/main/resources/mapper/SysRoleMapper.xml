@@ -2,4 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.downing.boot.admin.mapper.SysRoleMapper">
 
+    <select id="getUserRoles" parameterType="java.lang.Integer" resultType="com.downing.boot.entity.SysRole">
+        select sys_role.id,sys_role.role_name,sys_role.role_code from sys_user_role ur
+        left join sys_user on (ur.user_id = sys_user.id)
+        left join sys_role on (ur.role_id = sys_role.id)
+    </select>
 </mapper>
