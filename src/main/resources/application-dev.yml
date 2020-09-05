@@ -32,21 +32,6 @@ spring:
       # 配置多个英文逗号分隔
       filters: stat,wall
 
-#mybatis
-mybatis-plus:
-  mapper-locations:
-    classpath: resources/mapper/*.xml
-  typeAliasesPackage: com.downing.boot.mapper
-  global-config:
-    id-type: 0
-    field-strategy: 0
-    db-column-underline: true
-    refresh-mapper: true
-  configuration:
-      map-underscore-to-camel-case: true
-      cache-enabled: false
-
-
 
 
 

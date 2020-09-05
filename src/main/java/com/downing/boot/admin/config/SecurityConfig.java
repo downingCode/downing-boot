@@ -1,12 +1,17 @@
 package com.downing.boot.admin.config;
 
+import com.downing.boot.admin.filter.CustomAuthenticationFilter;
+import com.downing.boot.admin.handler.AuthAccessDeniedHandler;
+import com.downing.boot.admin.handler.AuthFailHandler;
+import com.downing.boot.admin.handler.AuthLogoutHandler;
+import com.downing.boot.admin.handler.AuthSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -39,8 +44,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 //"/login"不进行权限验证
+                .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/login").permitAll()
                 .antMatchers("/favicon.ico").permitAll()
+                .antMatchers(HttpMethod.OPTIONS).permitAll()
                 .anyRequest().authenticated()   //其他的需要登陆后才能访问
                 .and()
                 .formLogin()
@@ -55,11 +62,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout().logoutUrl("/logout")
                 .logoutSuccessHandler(authLogoutHandler)
                 .and()
-                //讲自定义的filter添加到UsernamePasswordAuthenticationFilter位置
-                .addFilterAt(customAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
                 //配置没有权限的自定义处理类
                 .exceptionHandling().accessDeniedHandler(authAccessDeniedHandler)
                 .and()
+                //将自定义的filter添加到UsernamePasswordAuthenticationFilter位置
+                .addFilterAt(customAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .cors()//新加入
                 .and()
                 .csrf().disable();// 取消跨站请求伪造防护

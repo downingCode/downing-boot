@@ -1,4 +1,4 @@
-package com.downing.boot.admin.config;
+package com.downing.boot.admin.handler;
 
 import com.downing.boot.common.DowningResult;
 import com.downing.boot.utils.JsonUtils;

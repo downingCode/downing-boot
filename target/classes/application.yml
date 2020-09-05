@@ -4,3 +4,23 @@ spring:
   profiles:
     active: dev
 
+#mybatis
+mybatis-plus:
+  mapper-locations:
+    classpath: resources/mapper/*.xml
+  typeAliasesPackage: com.downing.boot.mapper
+  global-config:
+    id-type: 0
+    field-strategy: 0
+    db-column-underline: true
+    refresh-mapper: true
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+
+jwt:
+  expiration: 604800
+  secret: mySecret
+  tokenHead: 'Bearer '
+  tokenHeader: Authorization
+
