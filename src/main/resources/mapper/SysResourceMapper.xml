@@ -2,4 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.downing.boot.admin.mapper.SysResourceMapper">
 
+    <select id="getRoleResources" parameterType="java.lang.Integer" resultType="com.downing.boot.entity.SysResource">
+        select sys_resource.id,sys_resource.name,sys_resource.url from sys_role_resource rr
+        left join sys_role on (rr.role_id = sys_role.id)
+        left join sys_resource on (rr.resource_id = sys_resource.id)
+        where rr.role_id = #{roleId}
+    </select>
 </mapper>

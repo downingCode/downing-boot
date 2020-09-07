@@ -6,5 +6,6 @@
         select sys_role.id,sys_role.role_name,sys_role.role_code from sys_user_role ur
         left join sys_user on (ur.user_id = sys_user.id)
         left join sys_role on (ur.role_id = sys_role.id)
+        where ur.user_id = #{userId}
     </select>
 </mapper>

@@ -2,6 +2,9 @@ package com.downing.boot.admin.mapper;
 
 import com.downing.boot.entity.SysResource;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.downing.boot.entity.SysRole;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface SysResourceMapper extends BaseMapper<SysResource> {
 
+    List<SysResource> getRoleResources(Integer roleId);
 }

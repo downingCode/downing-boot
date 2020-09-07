@@ -1,10 +1,12 @@
 package com.downing.boot.admin.service;
 
+import com.downing.boot.entity.SysResource;
 import com.downing.boot.entity.SysRole;
 import com.downing.boot.entity.SysUser;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * <p>
@@ -16,4 +18,7 @@ import java.util.List;
  */
 public interface ISysUserService extends IService<SysUser> {
 
+    SysUser getLoginUser();
+
+    Set<SysResource> getUserResource(Integer userId);
 }

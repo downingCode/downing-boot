@@ -5,16 +5,26 @@ import com.downing.boot.admin.handler.AuthAccessDeniedHandler;
 import com.downing.boot.admin.handler.AuthFailHandler;
 import com.downing.boot.admin.handler.AuthLogoutHandler;
 import com.downing.boot.admin.handler.AuthSuccessHandler;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.InsufficientAuthenticationException;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * @author downing
@@ -53,17 +63,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 //loginProcessingUrl用于指定前后端分离的时候调用后台登录接口的名称
                 .loginProcessingUrl("/login")
-                //配置登录成功的自定义处理类
-                .successHandler(authSuccessHandler)
-                //配置登录失败的自定义处理类
-                .failureHandler(authFailHandler)
                 .and()
                 //loginProcessingUrl用于指定前后端分离的时候调用后台注销接口的名称
                 .logout().logoutUrl("/logout")
                 .logoutSuccessHandler(authLogoutHandler)
                 .and()
                 //配置没有权限的自定义处理类
-                .exceptionHandling().accessDeniedHandler(authAccessDeniedHandler)
+                .exceptionHandling().authenticationEntryPoint(authAccessDeniedHandler)
                 .and()
                 //将自定义的filter添加到UsernamePasswordAuthenticationFilter位置
                 .addFilterAt(customAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)

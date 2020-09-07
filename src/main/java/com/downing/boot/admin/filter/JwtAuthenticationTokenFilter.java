@@ -1,6 +1,7 @@
 package com.downing.boot.admin.filter;
 
 
+import com.downing.boot.admin.mapper.SysRoleMapper;
 import com.downing.boot.common.DowningResult;
 import com.downing.boot.utils.IpAddressUtil;
 import com.downing.boot.utils.JsonUtils;
@@ -71,7 +72,6 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
                 UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
                 //验证token SecurityContextHolder.getContext().getAuthentication()
                 if (jwtTokenUtil.validateToken(token, userDetails)) {
-                    //验证权限
                     UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                     authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                     SecurityContextHolder.getContext().setAuthentication(authentication);
