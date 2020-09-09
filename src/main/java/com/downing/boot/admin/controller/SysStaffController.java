@@ -1,4 +1,4 @@
-package com.downing.boot.controller;
+package com.downing.boot.admin.controller;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;

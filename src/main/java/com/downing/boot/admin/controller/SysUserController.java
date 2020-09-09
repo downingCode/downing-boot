@@ -4,6 +4,7 @@ import com.downing.boot.admin.service.ISysUserService;
 import com.downing.boot.common.DowningResult;
 import com.downing.boot.entity.SysUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/admin/user")
-public class AdminUserController {
+public class SysUserController {
 
     @Autowired
     private ISysUserService userService;
@@ -24,5 +25,10 @@ public class AdminUserController {
     public DowningResult getUserResource(){
         SysUser loginUser = userService.getLoginUser();
         return new DowningResult("获取成功",userService.getUserResource(loginUser.getId()));
+    }
+
+    @GetMapping("/getName")
+    public String getCurrentLoginName(){
+        return SecurityContextHolder.getContext().getAuthentication().getName();
     }
 }

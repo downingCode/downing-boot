@@ -1,6 +1,7 @@
 package com.downing.boot.admin.config;
 
 import com.downing.boot.admin.filter.CustomAuthenticationFilter;
+import com.downing.boot.admin.filter.JwtAuthenticationTokenFilter;
 import com.downing.boot.admin.handler.AuthAccessDeniedHandler;
 import com.downing.boot.admin.handler.AuthFailHandler;
 import com.downing.boot.admin.handler.AuthLogoutHandler;
@@ -50,8 +51,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private MyAuthenticationProvider authenticationProvider;
 
+    @Autowired
+    private JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        /**
+         * 在 UsernamePasswordAuthenticationFilter 之前添加 JwtAuthenticationTokenFilter
+         */
+        http.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
         http.authorizeRequests()
                 //"/login"不进行权限验证
                 .antMatchers("/admin/**").hasRole("ADMIN")
