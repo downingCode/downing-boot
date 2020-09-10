@@ -86,9 +86,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         startTime = System.currentTimeMillis();
         endTime = System.currentTimeMillis();
         String requestType = request.getMethod();
-        logger.info(formMapKey(1, fullUrl, requestType,
-                IpAddressUtil.getIpAddr((HttpServletRequest) request), sbParams.toString(), authHeader)
-                + ",\"cost\":\"" + (endTime - startTime) + "ms\"");
+        //logger.info(formMapKey(1, fullUrl, requestType,IpAddressUtil.getIpAddr((HttpServletRequest) request), sbParams.toString(), authHeader) + ",\"cost\":\"" + (endTime - startTime) + "ms\"");
     }
 
     private void printPermissionResult(HttpServletResponse response) throws IOException {

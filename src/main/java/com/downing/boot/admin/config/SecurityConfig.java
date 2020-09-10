@@ -62,9 +62,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
         http.authorizeRequests()
                 //"/login"不进行权限验证
-                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/admin/**").hasAnyRole("ADMIN","SUPER_ADMIN")
                 .antMatchers("/login").permitAll()
-                .antMatchers("/favicon.ico").permitAll()
                 .antMatchers(HttpMethod.OPTIONS).permitAll()
                 .anyRequest().authenticated()   //其他的需要登陆后才能访问
                 .and()

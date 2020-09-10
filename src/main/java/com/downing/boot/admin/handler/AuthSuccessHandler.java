@@ -32,8 +32,8 @@ public class AuthSuccessHandler implements AuthenticationSuccessHandler {
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+        //UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        //SecurityContextHolder.getContext().setAuthentication(authentication);
         System.out.println("管理员 " + authentication.getName() + " 登录");
         DowningResult result = new DowningResult();
         result.setCode(200);

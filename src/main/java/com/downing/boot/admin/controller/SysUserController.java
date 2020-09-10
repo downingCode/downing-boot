@@ -21,6 +21,10 @@ public class SysUserController {
     @Autowired
     private ISysUserService userService;
 
+    /**
+     * 获取资源
+     * @return
+     */
     @GetMapping("/getResource")
     public DowningResult getUserResource(){
         SysUser loginUser = userService.getLoginUser();
