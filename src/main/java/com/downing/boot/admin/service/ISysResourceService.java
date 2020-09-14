@@ -13,4 +13,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface ISysResourceService extends IService<SysResource> {
 
+    /**
+     * 分配角色资源
+     *
+     * @param roleId
+     * @param resourceIds
+     */
+    void grantRoleResource(Integer roleId, String resourceIds);
 }

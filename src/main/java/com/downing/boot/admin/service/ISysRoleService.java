@@ -8,12 +8,20 @@ import java.util.List;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author downing
  * @since 2020-09-03
  */
 public interface ISysRoleService extends IService<SysRole> {
+
+    /**
+     * 分配角色
+     *
+     * @param uid
+     * @param roleIds
+     */
+    void grantUserRole(Integer uid, String roleIds);
 
 }

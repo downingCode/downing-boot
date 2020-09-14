@@ -17,4 +17,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class SysResourceServiceImpl extends ServiceImpl<SysResourceMapper, SysResource> implements ISysResourceService {
 
+    @Override
+    public void grantRoleResource(Integer roleId, String resourceIds) {
+
+    }
 }
