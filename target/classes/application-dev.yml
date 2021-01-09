@@ -10,7 +10,7 @@ spring:
       # 数据源配置
       username: downing
       password: Downing1005!
-      url: jdbc:mysql://106.14.149.253:3306/downing_mall?useUnicode=true&characterEncoding=utf-8&useSSL=false
+      url: jdbc:mysql://106.14.149.253:9906/downing_mall?useUnicode=true&characterEncoding=utf-8&useSSL=false
       driver-class-name: com.mysql.jdbc.Driver
       # 初始化 最小 最大
       initial-size: 5
