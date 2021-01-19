@@ -1,4 +1,4 @@
-package com.downing.boot.leetcode;
+package com.downing.boot.leetcode.zeroEvenOdd;
 
 /**
  * @author downing
