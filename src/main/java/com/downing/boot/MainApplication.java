@@ -22,6 +22,21 @@ public class MainApplication implements ApplicationRunner {
 
     public static void main(String[] args) {
         SpringApplication.run(MainApplication.class, args);
+        int[] a = {1, 3, 5, 2};
+        bubble(a);
+    }
+
+    public static void bubble(int[] datas) {
+        for (int i = 0; i < datas.length; i++) {
+            for (int j = 1; j < datas.length - 1; j++) {
+                if (datas[i] < datas[j]) {
+                    int temp = datas[i];
+                    datas[i] = datas[j];
+                    datas[j] = temp;
+                }
+            }
+        }
+        System.out.println(datas);
     }
 
     @Override
@@ -30,7 +45,7 @@ public class MainApplication implements ApplicationRunner {
     }
 
     @RequestMapping("/index")
-    public String index(){
+    public String index() {
         return "index";
     }
 }

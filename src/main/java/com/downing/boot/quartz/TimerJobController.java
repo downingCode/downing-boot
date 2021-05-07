@@ -2,10 +2,10 @@ package com.downing.boot.quartz;
 
 import com.downing.boot.common.DowningResult;
 import com.downing.boot.entity.SysJob;
+import com.downing.boot.exception.TaskException;
+import org.quartz.SchedulerException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author downing
@@ -19,12 +19,14 @@ public class TimerJobController {
     @Autowired
     private TimerJobService timerJobService;
 
-    public DowningResult getList(){
-        return new DowningResult("");
+    @GetMapping("/")
+    public DowningResult getList() throws SchedulerException {
+        return new DowningResult("获取成功", timerJobService.listTask());
     }
 
-    public DowningResult add(@RequestBody SysJob sysJob){
-
-        return new DowningResult("");
+    @PostMapping("/add")
+    public DowningResult add(@RequestBody SysJob sysJob) throws TaskException, SchedulerException {
+        timerJobService.addTask(sysJob);
+        return new DowningResult("添加成功");
     }
 }
